@@ -4,6 +4,8 @@ This project was forked from [Shouhaei Yamauchi's repo](https://github.com/shouh
 
 The code has also been refactored to remove the constructor from the component classes, as well as incorporating axios instead of using an XMLHttpRequest.
 
+The below description is the original author's.
+
 # React Passport Example Application
 
 An example application which combines a back-end which stores user data and front-end React.js application which handles user authentication sessions.
@@ -19,12 +21,13 @@ However, this version has replaced the React Router v3 which were used in the ab
 
 This application incorporates the following packages:
 
-- bcryptjs
-- jsonwebtoken
-- mongoose
-- passport
-- react-router-dom
-- validator
+* axios
+* bcryptjs
+* jsonwebtoken
+* mongoose
+* passport
+* react-router-dom
+* validator
 
 ## Installation
 
