@@ -33,18 +33,22 @@ After cloning the repo, follow the steps below:
 $ cd react-passport-example
 ```
 ```sh
-$ yarn install
-```
-```sh
 $ sudo mongod
 ```
 ```sh
-$ yarn run dev
+$ yarn install
+```
+```sh
+$ cd client && yarn install
 ```
 
-When editing the files, run the following command for webpack to watch your files and bundle whenever changes are made:
 ```sh
-$ yarn run bundle
+$ cd .. && yarn start
+```
+
+When ready to deploy, build your final application with:
+```sh
+$ yarn build
 ```
 
 ## Screenshots
