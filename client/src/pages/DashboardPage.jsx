@@ -1,41 +1,25 @@
 import React from 'react';
 import Auth from '../utils/Auth';
 import Dashboard from '../components/Dashboard.jsx';
-
+import API from '../utils/API';
 
 class DashboardPage extends React.Component {
-
-  /**
-   * Class constructor.
-   */
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      secretData: '',
-      user: {}
-    };
+  state = {
+    secretData: '',
+    user: {}
   }
 
   /**
    * This method will be executed after initial rendering.
    */
   componentDidMount() {
-    const xhr = new XMLHttpRequest();
-    xhr.open('get', '/api/dashboard');
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    // set the authorization HTTP header
-    xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
-    xhr.responseType = 'json';
-    xhr.addEventListener('load', () => {
-      if (xhr.status === 200) {
-        this.setState({
-          secretData: xhr.response.message,
-          user: xhr.response.user
+    API.dashboard(Auth.getToken())
+    .then(res => {
+      this.setState({
+          secretData: res.data.message,
+          user: res.data.user
         });
-      }
-    });
-    xhr.send();
+    })
   }
 
   /**
