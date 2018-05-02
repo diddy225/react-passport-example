@@ -3,13 +3,19 @@ const bodyParser = require('body-parser');
 const path = require("path");
 const passport = require('passport');
 const config = require('./config');
+const logger = require('morgan');
 
 const PORT = process.env.PORT || 3001;
+
+const app = express();
 
 // connect to the database and load models
 require('./server/models').connect(config.dbUri);
 
-const app = express();
+// Use morgan logger for logging requests
+app.use(logger("dev"));
+
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
