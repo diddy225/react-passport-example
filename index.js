@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // connect to the database and load models
-require('./server/models').connect(config.dbUri);
+// uses environmental variable for deployment (Heroku) or defaults to local config
+require('./server/models').connect(process.env.MONGODB_URI || config.dbUri);
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
