@@ -25,6 +25,12 @@ class LoginPage extends React.Component {
     }
     this.setState({ successMessage });
   }
+
+  componentWillUnmount(){
+    this.setState({
+          errors: {}
+        });
+  }
   /**
    * Process the form.
    *
@@ -37,20 +43,16 @@ class LoginPage extends React.Component {
     // create a string for an HTTP body message
     const { email, password } = this.state.user;
 
-    //const formData = `email=${email}&password=${password}`;
     API.login({email, password}).then(res => {
-      // change the component-container state
         // save the token
         Auth.authenticateUser(res.data.token);
 
         // update authenticated state
         this.props.toggleAuthenticateStatus()
-
+        
         // redirect signed in user to dashboard
         this.props.history.push('/dashboard');
-        this.setState({
-          errors: {}
-        });
+        
     }).catch(( {response} ) => {
 
         const errors = response.data.errors ? response.data.errors : {};
